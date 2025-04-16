@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,13 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				techstar: {
+					'blue': '#38bdf8',
+					'dark': '#0f172a',
+					'darker': '#080c16',
+					'purple': '#9333ea',
+					'pink': '#ec4899'
 				}
 			},
 			borderRadius: {
@@ -84,11 +92,33 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'pulse-glow': {
+					'0%, 100%': { 
+						boxShadow: '0 0 8px 2px rgba(56, 189, 248, 0.3)'
+					},
+					'50%': { 
+						boxShadow: '0 0 18px 5px rgba(56, 189, 248, 0.6)'
+					}
+				},
+				'circuit-flow': {
+					'0%': { 
+						backgroundPosition: '0% 0%' 
+					},
+					'100%': { 
+						backgroundPosition: '100% 100%' 
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'pulse-glow': 'pulse-glow 3s infinite ease-in-out',
+				'circuit-flow': 'circuit-flow 15s infinite linear'
+			},
+			backgroundImage: {
+				'circuit-pattern': "url('/lovable-uploads/a178bb12-1895-424c-8abf-f0aa874ab98f.png'), linear-gradient(to bottom, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.98))",
+				'tech-gradient': 'linear-gradient(135deg, rgba(15, 23, 42, 0.98) 0%, rgba(8, 12, 22, 1) 100%)'
 			}
 		}
 	},
