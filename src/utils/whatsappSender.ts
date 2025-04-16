@@ -2,9 +2,6 @@
 import { FormData } from "@/types/form";
 
 export const sendToWhatsApp = (pdfBlob: Blob, data: FormData): void => {
-  // Create a URL for the PDF blob
-  const pdfUrl = URL.createObjectURL(pdfBlob);
-  
   // Format courses as a bulleted list
   const coursesList = data.coursesOfInterest.map(course => `• ${course}`).join("\n");
   
@@ -24,11 +21,8 @@ ${coursesList}
 
 Veja o formulário em anexo.`;
   
-  // Open WhatsApp with pre-filled message (PDF needs to be downloaded and sent separately)
+  // Open WhatsApp directly with pre-filled message
   const encodedMessage = encodeURIComponent(message);
   const whatsappUrl = `https://wa.me/244952993627?text=${encodedMessage}`;
-  
-  // Open links in new tabs
-  window.open(pdfUrl, "_blank"); // Open PDF for download
-  window.open(whatsappUrl, "_blank"); // Open WhatsApp
+  window.location.href = whatsappUrl; // Redirect to WhatsApp directly
 };
