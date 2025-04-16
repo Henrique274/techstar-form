@@ -105,9 +105,9 @@ export const generatePDF = (data: FormData): Promise<Blob> => {
     doc.setTextColor(100, 100, 100);
     doc.text("TECH_STAR ACADEMY - TECHNOLLOGY", doc.internal.pageSize.width / 2, doc.internal.pageSize.height - 10, { align: "center" });
     
-    // Convert to blob and resolve
-    doc.output("blob").then((blob) => {
-      resolve(blob);
-    });
+    // Get the blob directly without using then
+    const blob = doc.output("blob");
+    resolve(blob);
   });
 };
+
