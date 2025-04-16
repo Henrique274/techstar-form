@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -14,7 +13,6 @@ import { FormData } from "@/types/form";
 import { generatePDF } from "@/utils/pdfGenerator";
 import { sendToWhatsApp } from "@/utils/whatsappSender";
 
-// Form schema with validation
 const formSchema = z.object({
   fullName: z.string().min(3, { message: "Nome deve ter pelo menos 3 caracteres" }),
   age: z.coerce.number().int().positive().min(5, { message: "Idade deve ser pelo menos 5 anos" }),
@@ -68,7 +66,6 @@ const TechStarForm = () => {
     try {
       setIsSubmitting(true);
       
-      // Prepare form data
       const formData: FormData = {
         fullName: values.fullName,
         age: values.age,
@@ -85,20 +82,16 @@ const TechStarForm = () => {
         referralSource: values.referralSource,
       };
       
-      // Generate PDF
       const pdfBlob = await generatePDF(formData);
       
-      // Send to WhatsApp
       sendToWhatsApp(pdfBlob, formData);
       
-      // Show success message
       toast({
         title: "Inscrição Enviada!",
         description: "Obrigado pela inscrição! A tua ficha foi enviada e em breve receberás o nosso contacto.",
         className: "bg-techstar-blue/20 border border-techstar-blue/30",
       });
       
-      // Reset form
       form.reset();
       setShowOtherCourse(false);
       
@@ -114,7 +107,6 @@ const TechStarForm = () => {
     }
   };
   
-  // Handle checkbox changes for courses
   const handleCoursesChange = (checked: boolean, value: string) => {
     const currentValues = form.getValues("coursesOfInterest");
     
@@ -136,7 +128,6 @@ const TechStarForm = () => {
     <div className="w-full max-w-xl mx-auto px-4 py-6 rounded-lg bg-techstar-darker/80 backdrop-blur-sm neon-border animate-pulse-glow">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          {/* Name Field */}
           <FormField
             control={form.control}
             name="fullName"
@@ -155,7 +146,6 @@ const TechStarForm = () => {
             )}
           />
           
-          {/* Age Field */}
           <FormField
             control={form.control}
             name="age"
@@ -175,7 +165,6 @@ const TechStarForm = () => {
             )}
           />
           
-          {/* WhatsApp Field */}
           <FormField
             control={form.control}
             name="whatsapp"
@@ -194,7 +183,6 @@ const TechStarForm = () => {
             )}
           />
           
-          {/* Email Field */}
           <FormField
             control={form.control}
             name="email"
@@ -214,14 +202,16 @@ const TechStarForm = () => {
             )}
           />
           
-          {/* Education Level */}
           <FormField
             control={form.control}
             name="education"
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="text-white">Escolaridade*</FormLabel>
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <Select 
+                  onValueChange={field.onChange} 
+                  defaultValue={field.value}
+                >
                   <FormControl>
                     <SelectTrigger className="tech-input">
                       <SelectValue placeholder="Selecione sua escolaridade" />
@@ -240,7 +230,6 @@ const TechStarForm = () => {
             )}
           />
           
-          {/* Courses of Interest */}
           <FormField
             control={form.control}
             name="coursesOfInterest"
@@ -292,7 +281,6 @@ const TechStarForm = () => {
             )}
           />
           
-          {/* Knowledge Level */}
           <FormField
             control={form.control}
             name="knowledgeLevel"
@@ -345,7 +333,6 @@ const TechStarForm = () => {
             )}
           />
           
-          {/* Referral Source */}
           <FormField
             control={form.control}
             name="referralSource"
@@ -370,7 +357,6 @@ const TechStarForm = () => {
             )}
           />
           
-          {/* Submit Button */}
           <Button 
             type="submit" 
             className="w-full bg-techstar-blue hover:bg-techstar-blue/80 text-white font-semibold py-2"
