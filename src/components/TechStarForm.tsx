@@ -217,12 +217,12 @@ const TechStarForm = () => {
                       <SelectValue placeholder="Selecione sua escolaridade" />
                     </SelectTrigger>
                   </FormControl>
-                  <SelectContent className="bg-techstar-darker border-techstar-blue/30">
-                    <SelectItem value="básico">Básico</SelectItem>
-                    <SelectItem value="médio">Médio</SelectItem>
-                    <SelectItem value="técnico">Técnico</SelectItem>
-                    <SelectItem value="universitário">Universitário</SelectItem>
-                    <SelectItem value="outro">Outro</SelectItem>
+                  <SelectContent className="bg-techstar-darker/95 text-white border border-techstar-blue/30 z-50">
+                    <SelectItem value="básico" className="text-white hover:bg-techstar-blue/20">Básico</SelectItem>
+                    <SelectItem value="médio" className="text-white hover:bg-techstar-blue/20">Médio</SelectItem>
+                    <SelectItem value="técnico" className="text-white hover:bg-techstar-blue/20">Técnico</SelectItem>
+                    <SelectItem value="universitário" className="text-white hover:bg-techstar-blue/20">Universitário</SelectItem>
+                    <SelectItem value="outro" className="text-white hover:bg-techstar-blue/20">Outro</SelectItem>
                   </SelectContent>
                 </Select>
                 <FormMessage />
@@ -345,11 +345,11 @@ const TechStarForm = () => {
                       <SelectValue placeholder="Selecione uma opção" />
                     </SelectTrigger>
                   </FormControl>
-                  <SelectContent className="bg-techstar-darker border-techstar-blue/30">
-                    <SelectItem value="amigos">Amigos</SelectItem>
-                    <SelectItem value="redes sociais">Redes Sociais</SelectItem>
-                    <SelectItem value="eventos">Eventos</SelectItem>
-                    <SelectItem value="outros">Outros</SelectItem>
+                  <SelectContent className="bg-techstar-darker/95 text-white border border-techstar-blue/30 z-50">
+                    <SelectItem value="amigos" className="text-white hover:bg-techstar-blue/20">Amigos</SelectItem>
+                    <SelectItem value="redes sociais" className="text-white hover:bg-techstar-blue/20">Redes Sociais</SelectItem>
+                    <SelectItem value="eventos" className="text-white hover:bg-techstar-blue/20">Eventos</SelectItem>
+                    <SelectItem value="outros" className="text-white hover:bg-techstar-blue/20">Outros</SelectItem>
                   </SelectContent>
                 </Select>
                 <FormMessage />
