@@ -20,16 +20,10 @@ const formSchema = z.object({
     message: "Formato inválido. Use: 9xx xxx xxx" 
   }),
   email: z.string().email({ message: "Email inválido" }).optional().or(z.literal("")),
-  education: z.enum(["básico", "médio", "técnico", "universitário", "outro"], {
-    required_error: "Selecione a escolaridade",
-  }),
   coursesOfInterest: z.array(z.string()).min(1, { message: "Selecione pelo menos um curso" }),
   otherCourse: z.string().optional(),
   knowledgeLevel: z.enum(["Iniciante", "Intermédio", "Avançado"], {
     required_error: "Selecione o nível de conhecimento",
-  }),
-  referralSource: z.enum(["amigos", "redes sociais", "eventos", "outros"], {
-    required_error: "Selecione como soube de nós",
   }),
 });
 
@@ -54,11 +48,9 @@ const TechStarForm = () => {
       age: undefined,
       whatsapp: "",
       email: "",
-      education: undefined,
       coursesOfInterest: [],
       otherCourse: "",
       knowledgeLevel: undefined,
-      referralSource: undefined,
     },
   });
   
@@ -71,7 +63,6 @@ const TechStarForm = () => {
         age: values.age,
         whatsapp: values.whatsapp,
         email: values.email || "",
-        education: values.education,
         coursesOfInterest: values.coursesOfInterest.map(courseId => {
           if (courseId === "other") {
             return values.otherCourse || "Outro curso não especificado";
@@ -79,7 +70,6 @@ const TechStarForm = () => {
           return courses.find(c => c.id === courseId)?.label || courseId;
         }),
         knowledgeLevel: values.knowledgeLevel,
-        referralSource: values.referralSource,
       };
       
       const pdfBlob = await generatePDF(formData);
@@ -204,34 +194,6 @@ const TechStarForm = () => {
           
           <FormField
             control={form.control}
-            name="education"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-white">Escolaridade*</FormLabel>
-                <Select 
-                  onValueChange={field.onChange} 
-                  defaultValue={field.value}
-                >
-                  <FormControl>
-                    <SelectTrigger className="tech-input">
-                      <SelectValue placeholder="Selecione sua escolaridade" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent className="bg-techstar-darker/95 text-white border border-techstar-blue/30 z-50">
-                    <SelectItem value="básico" className="text-white hover:bg-techstar-blue/20">Básico</SelectItem>
-                    <SelectItem value="médio" className="text-white hover:bg-techstar-blue/20">Médio</SelectItem>
-                    <SelectItem value="técnico" className="text-white hover:bg-techstar-blue/20">Técnico</SelectItem>
-                    <SelectItem value="universitário" className="text-white hover:bg-techstar-blue/20">Universitário</SelectItem>
-                    <SelectItem value="outro" className="text-white hover:bg-techstar-blue/20">Outro</SelectItem>
-                  </SelectContent>
-                </Select>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          
-          <FormField
-            control={form.control}
             name="coursesOfInterest"
             render={() => (
               <FormItem>
@@ -328,30 +290,6 @@ const TechStarForm = () => {
                     </FormItem>
                   </RadioGroup>
                 </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          
-          <FormField
-            control={form.control}
-            name="referralSource"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-white">Como soube da TECH_STAR*</FormLabel>
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
-                  <FormControl>
-                    <SelectTrigger className="tech-input">
-                      <SelectValue placeholder="Selecione uma opção" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent className="bg-techstar-darker/95 text-white border border-techstar-blue/30 z-50">
-                    <SelectItem value="amigos" className="text-white hover:bg-techstar-blue/20">Amigos</SelectItem>
-                    <SelectItem value="redes sociais" className="text-white hover:bg-techstar-blue/20">Redes Sociais</SelectItem>
-                    <SelectItem value="eventos" className="text-white hover:bg-techstar-blue/20">Eventos</SelectItem>
-                    <SelectItem value="outros" className="text-white hover:bg-techstar-blue/20">Outros</SelectItem>
-                  </SelectContent>
-                </Select>
                 <FormMessage />
               </FormItem>
             )}

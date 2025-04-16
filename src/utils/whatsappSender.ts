@@ -12,9 +12,7 @@ export const sendToWhatsApp = (pdfBlob: Blob, data: FormData): void => {
 *Idade:* ${data.age}
 *WhatsApp:* ${data.whatsapp}
 *Email:* ${data.email || "Não fornecido"}
-*Escolaridade:* ${data.education}
 *Nível:* ${data.knowledgeLevel}
-*Fonte:* ${data.referralSource}
 
 *Cursos de interesse:*
 ${coursesList}
@@ -24,5 +22,5 @@ Veja o formulário em anexo.`;
   // Open WhatsApp directly with pre-filled message
   const encodedMessage = encodeURIComponent(message);
   const whatsappUrl = `https://wa.me/244952993627?text=${encodedMessage}`;
-  window.location.href = whatsappUrl; // Redirect to WhatsApp directly
+  window.location.href = whatsappUrl;
 };
