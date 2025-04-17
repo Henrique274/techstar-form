@@ -61,24 +61,11 @@ export const generatePDF = (data: FormData): Promise<Blob> => {
       currentY += lineHeight;
     }
     
-    doc.setFont(undefined, "bold");
-    doc.text("Escolaridade:", 20, currentY);
-    doc.setFont(undefined, "normal");
-    doc.text(data.education, 80, currentY);
-    currentY += lineHeight;
-    
     // Knowledge level
     doc.setFont(undefined, "bold");
     doc.text("Nível de conhecimento:", 20, currentY);
     doc.setFont(undefined, "normal");
     doc.text(data.knowledgeLevel, 80, currentY);
-    currentY += lineHeight;
-    
-    // How did they hear about us
-    doc.setFont(undefined, "bold");
-    doc.text("Como soube da TECH_STAR:", 20, currentY);
-    doc.setFont(undefined, "normal");
-    doc.text(data.referralSource, 80, currentY);
     currentY += lineHeight * 1.5;
     
     // Courses of interest
@@ -110,4 +97,3 @@ export const generatePDF = (data: FormData): Promise<Blob> => {
     resolve(blob);
   });
 };
-
